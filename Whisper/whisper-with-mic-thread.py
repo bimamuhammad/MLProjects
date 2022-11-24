@@ -7,6 +7,11 @@ from pydub import AudioSegment
 import tempfile
 import os
 
+"""
+" An attempt to process in realtime using whisper
+" Uses python's multiprocessing library
+"""
+
 recognizer = speech_recognition.Recognizer()
 model = whisper.load_model('base')
 temp_dir = tempfile.mkdtemp()
@@ -42,7 +47,7 @@ def transcribe():
     while True:
         if len(queue) > 0:
             save_path = queue.pop(0)
-            text = model.transcribe(save_path, fp16=False, language='ha')
+            text = model.transcribe(save_path, fp16=False, language='eng')
             text = text['text'].lower()
             print(f"Recognized {text}")
             os.remove(save_path)
