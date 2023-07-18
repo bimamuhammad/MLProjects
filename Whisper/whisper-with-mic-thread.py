@@ -47,7 +47,7 @@ def transcribe():
     while True:
         if len(queue) > 0:
             save_path = queue.pop(0)
-            text = model.transcribe(save_path, fp16=False, language='eng')
+            text = model.transcribe(save_path, fp16=False, language='english')
             text = text['text'].lower()
             print(f"Recognized {text}")
             os.remove(save_path)
